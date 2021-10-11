@@ -27,17 +27,8 @@ class HttpApi {
 
     // 2. 添加全局拦截器
     var baseInterceptor = InterceptorsWrapper(
-      onRequest: (request) {
-        // 1.在进行任何网络请求的时候, 可以添加一个loading显示
-        // 2.很多页面的访问必须要求携带Token,那么就可以在这里判断是有Token
-        // 3.对参数进行一些处理,比如序列化处理等
-        print('拦截了请求 request: $request');
-      },
-      onResponse: (response) {
-        print('拦截了 结果 response: $response');
-      },
-      onError: (e) {
-        print('拦截了错误 error: $e');
+      onRequest: (options, handler) {
+        handler.next(options);
       },
     );
     List<Interceptor> inters = [baseInterceptor];

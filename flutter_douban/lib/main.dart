@@ -20,3 +20,25 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+class MyAppDemo extends StatelessWidget {
+  const MyAppDemo({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Flutter Douban",
+      theme: ThemeData(
+        primaryColor: Colors.blueAccent,
+      ),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Home"),
+        ),
+        body: Container(
+          color: Colors.blueAccent,
+        ),
+      ),
+    );
+  }
+}
