@@ -63,7 +63,7 @@ class HomeMovieItem extends StatelessWidget {
             imageErrorBuilder: (context, err, stackTrace) {
               return buildPlaceholder();
             },
-            image: movie.images.large,
+            image: movie.images?.large ?? "",
             width: 108,
             height: 160,
           ),
@@ -129,6 +129,17 @@ class HomeMovieItem extends StatelessWidget {
 
   /// 1.2.1 构建信息标题
   Widget buildInfoTitle() {
+    List<WidgetSpan> items = movie.title != null
+        ? movie.title!.split(" ")[0].runes.map((e) {
+            return WidgetSpan(
+              alignment: PlaceholderAlignment.middle,
+              child: Text(
+                String.fromCharCode(e),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
+            );
+          }).toList()
+        : [];
     return Text.rich(
       TextSpan(children: [
         WidgetSpan(
@@ -136,15 +147,7 @@ class HomeMovieItem extends StatelessWidget {
           alignment: PlaceholderAlignment.middle,
         ),
         WidgetSpan(child: SizedBox(width: 5)),
-        ...movie.title.split(" ")[0].runes.map((e) {
-          return WidgetSpan(
-            alignment: PlaceholderAlignment.middle,
-            child: Text(
-              String.fromCharCode(e),
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-          );
-        }).toList(),
+        ...items,
       ]),
     );
   }
@@ -154,12 +157,12 @@ class HomeMovieItem extends StatelessWidget {
     return Row(
       children: [
         RatingStart(
-          rating: movie.rating.average,
+          rating: movie.rating?.average ?? 0,
           size: 16,
           selectedColor: Colors.orange,
         ),
         SizedBox(width: 5),
-        Text("${movie.rating.average}",
+        Text("${movie.rating?.average ?? 0}",
             style: TextStyle(fontSize: 16, color: Colors.orange)),
       ],
     );
@@ -167,12 +170,12 @@ class HomeMovieItem extends StatelessWidget {
 
   /// 1.2.3 构建信息内容
   Widget buildInfoMessage() {
-    var countries = movie.countries.join(" ");
-    var genres = movie.genres.join(" ");
-    var directors = movie.directors.map((e) => e.name).join(" ");
+    var countries = movie.countries?.join(" ");
+    var genres = movie.genres?.join(" ");
+    var directors = movie.directors?.map((e) => e.name).join(" ");
     var actors = movie.casts
-        .map((e) => e.name)
-        .skipWhile((value) => value == movie.directors[0].name)
+        ?.map((e) => e.name)
+        .skipWhile((value) => value == movie.directors?[0].name)
         .join(" ");
     return Text(
       "${movie.year} / $countries / $genres / $directors / $actors",
@@ -218,7 +221,7 @@ class HomeMovieItem extends StatelessWidget {
         color: Color(0xfff2f2f2),
         borderRadius: BorderRadius.circular(4),
       ),
-      child: Text(movie.original_title),
+      child: Text(movie.original_title ?? ""),
     );
   }
 }

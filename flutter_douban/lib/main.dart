@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/main/main_page.dart';
@@ -17,28 +18,6 @@ class MyApp extends StatelessWidget {
         // highlightColor: Colors.transparent
       ),
       home: MainPage(),
-    );
-  }
-}
-
-class MyAppDemo extends StatelessWidget {
-  const MyAppDemo({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: "Flutter Douban",
-      theme: ThemeData(
-        primaryColor: Colors.blueAccent,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Home"),
-        ),
-        body: Container(
-          color: Colors.blueAccent,
-        ),
-      ),
     );
   }
 }

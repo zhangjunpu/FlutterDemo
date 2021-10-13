@@ -12,12 +12,13 @@ class DashedLine extends StatefulWidget {
   final double dashHeight; // 虚线高度
   final double dashGap; // 虚线间隙
 
-  DashedLine(
-      {this.axis = Axis.horizontal,
-      this.color = const Color(0xffcccccc),
-      this.dashWidth = 1,
-      this.dashHeight = 1,
-      this.dashGap = 1});
+  DashedLine({
+    this.axis = Axis.horizontal,
+    this.color = const Color(0xffcccccc),
+    this.dashWidth = 1,
+    this.dashHeight = 1,
+    this.dashGap = 1,
+  });
 
   @override
   _DashedLineState createState() => _DashedLineState();
@@ -32,10 +33,12 @@ class _DashedLineState extends State<DashedLine> {
   @override
   void initState() {
     super.initState();
-    // 监听widget渲染完成
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    // 监听 widget 渲染完成
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      var width = context.size?.width ?? 0;
+      var height = context.size?.height ?? 0;
       setState(() {
-        length = _isHorizontal() ? context.size.width : context.size.height;
+        length = _isHorizontal() ? width : height;
       });
     });
   }

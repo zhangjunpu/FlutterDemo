@@ -15,14 +15,14 @@ class RatingStart extends StatefulWidget {
   final Widget selectedImage; // 选中星星
 
   RatingStart({
-    @required this.rating,
+    required this.rating,
     this.maxRating = 10,
     this.count = 5,
     this.size = 30,
     this.unselectedColor = const Color(0xffbbbbbb),
     this.selectedColor = const Color(0xffff0000),
-    Widget unselectedImage,
-    Widget selectedImage,
+    Widget? unselectedImage,
+    Widget? selectedImage,
   })  : unselectedImage = unselectedImage ?? Icon(Icons.star_border, color: unselectedColor, size: size),
         selectedImage = selectedImage ?? Icon(Icons.star, color: selectedColor, size: size);
 
@@ -84,11 +84,13 @@ class StarClipper extends CustomClipper<Rect> {
 
   @override
   Rect getClip(Size size) {
+    // 指定剪裁需要保留的范围
     return Rect.fromLTRB(0, 0, width, size.height);
   }
 
   @override
   bool shouldReclip(StarClipper oldClipper) {
+    // 什么时候才需要重新裁剪
     return oldClipper.width != width;
   }
 }

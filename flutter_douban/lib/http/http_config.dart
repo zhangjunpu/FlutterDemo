@@ -3,5 +3,5 @@
 /// [date] 2020/9/15
 class HttpConfig {
   static const BASE_URL = "http://t.yushu.im/";
-  static const TIME_OUT_MILLS = 10000;
+  static const TIMEOUT_MILLS = 10000;
 }

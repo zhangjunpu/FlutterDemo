@@ -23,6 +23,7 @@ class _HomeContentState extends State<HomeContent> {
     movieRankIndex = 0;
     _refreshController.resetNoData();
     HomeRequest.requestMovieList(page).then((value) {
+      print(value);
       setState(() {
         movies = value;
       });

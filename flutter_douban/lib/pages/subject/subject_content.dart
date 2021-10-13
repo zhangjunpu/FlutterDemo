@@ -56,7 +56,7 @@ class _SubjectContentState extends State<SubjectContent> {
   }
 
   /// 加载Footer
-  Widget buildFooterView(LoadStatus mode) {
+  Widget buildFooterView(LoadStatus? mode) {
     Widget body;
     if (mode == LoadStatus.idle) {
       body = Text("上拉加载");
