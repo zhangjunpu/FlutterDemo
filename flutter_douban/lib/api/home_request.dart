@@ -1,6 +1,6 @@
 import 'package:flutter_douban/model/movie_item.dart';
 
-import 'http_request.dart';
+import 'core/http_request.dart';
 
 /// 首页请求页面
 /// {@author junpu}

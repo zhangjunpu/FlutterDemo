@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_douban/http/home_request.dart';
+import 'package:flutter_douban/api/home_request.dart';
 import 'package:flutter_douban/model/movie_item.dart';
 import 'package:flutter_douban/pages/home/home_movie_item.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';

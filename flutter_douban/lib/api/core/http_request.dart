@@ -9,9 +9,9 @@ class HttpApi {
   /// 全局基础配置
   static final _baseOptions = BaseOptions(
     baseUrl: HttpConfig.BASE_URL,
-    connectTimeout: HttpConfig.TIMEOUT_MILLS,
-    sendTimeout: HttpConfig.TIMEOUT_MILLS,
-    receiveTimeout: HttpConfig.TIMEOUT_MILLS,
+    connectTimeout: Duration(milliseconds: HttpConfig.TIMEOUT_MILLS),
+    sendTimeout: Duration(microseconds: HttpConfig.TIMEOUT_MILLS),
+    receiveTimeout: Duration(microseconds: HttpConfig.TIMEOUT_MILLS),
   );
   static final _dio = Dio(_baseOptions);
   static final _baseInterceptor = InterceptorsWrapper(
@@ -36,7 +36,7 @@ class HttpApi {
     var option = Options(method: method);
 
     // 2. 添加全局拦截器
-    _dio.clear();
+    _dio.interceptors.clear();
     _dio.interceptors.add(_baseInterceptor);
     if (interceptor != null) _dio.interceptors.add(interceptor);
     _dio.interceptors.add(_logInterceptor);
@@ -50,7 +50,7 @@ class HttpApi {
         queryParameters: params,
       );
       return response.data;
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       return Future.error(e);
     }
   }
